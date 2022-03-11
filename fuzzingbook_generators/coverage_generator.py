@@ -17,7 +17,7 @@ def run_generator(num_trials, grammar):
             # print('resetting')
             generator.reset_coverage()
             
-    print(fuzzed)
+    # print(fuzzed)
     return fuzzed
 
 if __name__ == '__main__':

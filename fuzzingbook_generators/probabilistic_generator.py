@@ -28,7 +28,7 @@ def run_generator(num_trials, grammar):
     for i in range(half):
         fuzzed.append(inv_generator.fuzz())
         
-    print(fuzzed)
+    #print(fuzzed)
     return fuzzed
     
     

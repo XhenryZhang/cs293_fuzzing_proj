@@ -1,6 +1,6 @@
-To Install Grammarinator:
+Use Pipfile, Pipfile.lock, or requirements.txt to get the dependencies
 
-pip install grammarinator
+Example run of grammarinator:
 grammarinator-generate -p json_generator/JSONUnparser.py -l json_generator/JSONUnlexer.py -r json -d 100 -n 100
 
 This generates 100 json strings based on json.g4. Visit https://github.com/renatahodovan/grammarinator for official documentation.
@@ -13,6 +13,7 @@ This command outputs 3 folders:
  - <prefix>_basic_[json|xml]_corpus
  - <prefix>_coverage_[json|xml]_corpus
  - <prefix>_prob_[json|xml]_corpus
+ - <prefix>_prob_[]_corpus
 
 Folders correspond to the type of Grammar fuzzer used to generate the outputs. See the report for more details on the reasoning behind
 each type of generator.
