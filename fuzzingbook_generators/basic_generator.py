@@ -1,6 +1,7 @@
 from fuzzingbook.GrammarFuzzer import GrammarFuzzer
 from fuzzingbook.Grammars import convert_ebnf_grammar, Grammar
 from json_grammar import JSON_GRAMMAR_EBNF
+from xml_grammar import XML_GRAMMAR_EBNF
 
 # build grammar
 def run_generator(num_trials: int, grammar: Grammar):
@@ -13,4 +14,4 @@ def run_generator(num_trials: int, grammar: Grammar):
     return fuzzed
 
 if __name__ == '__main__':
-    run_generator(10, JSON_GRAMMAR_EBNF)
+    run_generator(10, XML_GRAMMAR_EBNF)

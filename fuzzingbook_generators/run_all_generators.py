@@ -2,14 +2,18 @@ from basic_generator import run_generator as run_basic
 from coverage_generator import run_generator as run_coverage
 from probabilistic_generator import run_generator as run_probabilistic
 from json_grammar import JSON_GRAMMAR_EBNF
+from xml_grammar import XML_GRAMMAR_EBNF
 import sys, os, datetime
 
 JSON = 'json'
+XML = 'xml'
 
 def fuzz_and_save(generator_func, num_trials, grammar_type, folder_prefix, folder_name):
     grammar = ""
     if grammar_type == JSON:
         grammar = JSON_GRAMMAR_EBNF
+    elif grammar_type == XML:
+        grammar = XML_GRAMMAR_EBNF
         
     fuzzing_results = generator_func(num_trials, grammar)
     
@@ -38,7 +42,7 @@ if __name__ == '__main__':
         print("Usage: py run_all_generators.py <number of trials> <json|xml> <output folders prefix>")
         sys.exit(1)
     
-    if sys.argv[2] != JSON:
+    if sys.argv[2] != JSON and sys.argv[2] != XML:
         print('invalid grammar type, only supported type is json')
         sys.exit(1)
         

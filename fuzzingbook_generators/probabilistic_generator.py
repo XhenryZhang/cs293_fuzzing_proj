@@ -2,22 +2,25 @@ from fuzzingbook.ProbabilisticGrammarFuzzer import ProbabilisticGrammarFuzzer, P
 from fuzzingbook.Grammars import convert_ebnf_grammar
 from fuzzingbook.Parser import EarleyParser
 from json_grammar import JSON_GRAMMAR_EBNF
+from xml_grammar import XML_GRAMMAR_EBNF
 from basic_generator import run_generator as basic_gen
 
 # fuzzing
 def run_generator(num_trials, grammar):
     bnf = convert_ebnf_grammar(grammar)
-    #print(bnf)
+    print(bnf)
     expansion_counter = ProbabilisticGrammarMiner(EarleyParser(bnf))
     half = num_trials // 2
     
+    print("expanded")
     # run basic generator and invert probabilities
     fuzzed = basic_gen(half, grammar)
+    print("finished basic fuzzing")
     prob_bnf = expansion_counter.mine_probabilistic_grammar(fuzzed)
-    #print("finished mining")
+    print("finished mining")
     
     inv_prob_bnf = invert_probs(prob_bnf)
-    #print(inv_prob_bnf)
+    print(inv_prob_bnf)
 
     assert is_valid_probabilistic_grammar(inv_prob_bnf)
     
@@ -28,10 +31,10 @@ def run_generator(num_trials, grammar):
     for i in range(half):
         fuzzed.append(inv_generator.fuzz())
         
-    #print(fuzzed)
+    print(fuzzed)
     return fuzzed
     
     
 if __name__ == '__main__':
-    run_generator(100, JSON_GRAMMAR_EBNF)
+    run_generator(200, XML_GRAMMAR_EBNF)
     
